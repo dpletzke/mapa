@@ -34,7 +34,7 @@ const MapPage = ({ mapProps, mapViewProps, featureLayerDetails }: MapPageProps) 
         map.add(featureLayer, i);
       });
       
-      const view = new MapView({
+      new MapView({
         map,
         container: viewDiv.current,
         ...mapViewProps,
