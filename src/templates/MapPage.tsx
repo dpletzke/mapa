@@ -16,29 +16,35 @@ const MapContainer = styled.div`
 type MapPageProps = {
   mapProps?: __esri.MapProperties;
   mapViewProps?: __esri.MapViewProperties;
-  featureLayerDetails?: __esri.FeatureLayerProperties[]
+  featureLayerDetails?: __esri.FeatureLayerProperties[];
 };
 
-const MapPage = ({ mapProps, mapViewProps, featureLayerDetails }: MapPageProps) => {
+const MapPage = ({
+  mapProps,
+  mapViewProps,
+  featureLayerDetails,
+}: MapPageProps) => {
   esriConfig.apiKey =
     "AAPK0ebbbe1224484cf182f775cae6b4aaf7mEIgQE8QTQeRV1PazTY3fsI-TzoQ5gAmYPQ7_Xiptz1Oq8UNHOEAxDRwyHlBwnNr";
-
+  console.log(mapProps, mapViewProps, featureLayerDetails);
   const viewDiv = useRef(null);
 
   useEffect(() => {
     if (viewDiv.current) {
       const map = new Map(mapProps);
-
-      featureLayerDetails?.forEach((featureLayerDetail, i) => {
-        const featureLayer = new FeatureLayer(featureLayerDetail);
-        map.add(featureLayer, i);
-      });
+      console.log(map);
       
-      new MapView({
+      // featureLayerDetails?.forEach((featureLayerDetail, i) => {
+      //   const featureLayer = new FeatureLayer(featureLayerDetail);
+      //   map.add(featureLayer, i);
+      // });
+
+      const view = new MapView({
         map,
         container: viewDiv.current,
         ...mapViewProps,
       });
+      console.log(view);
     }
   }, [featureLayerDetails, mapProps, mapViewProps]);
 
